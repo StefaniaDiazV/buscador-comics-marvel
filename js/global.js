@@ -66,3 +66,33 @@ const loreGithub = document.getElementById("lore-github");
 const loreLinkedin = document.getElementById("lore-linkedin");
 const stefaGithub = document.getElementById("stefa-github");
 const stefaLinkedin = document.getElementById("stefa-linkedin");
+
+
+let resultsCount = 0;
+let page = 1;
+
+// SEARCH API URL 
+
+const searchByName = (type, title) => {
+  if (title && type === "comics") {
+   return `titleStartsWith=${title}&`;
+ } else if (title &&  type === "characters") {
+   return `nameStartsWith=${title}&`;
+ } else {
+   return "";
+ };
+};
+
+const createUrl = (type, page, orderBy, title) => {
+ const offSet = (page - 1) * 20;
+ let url =  `${baseUrl}${type}?`;
+ url +=   searchByName(type,title);
+ url +=  `orderBy=${orderBy}&offset=${offSet}&apikey=${apiPublic}`;
+ return url;
+};
+
+const fetchUrl = async (url) => {
+ const response = await fetch(url);
+ const data = await response.json();
+ return data;
+};
