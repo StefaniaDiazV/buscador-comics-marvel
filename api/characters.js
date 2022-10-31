@@ -43,3 +43,10 @@ const printCharacters = (characters) => {
         cardGroup.append(characterCard)
       })
     };
+    
+const characterDetails = (name, image, description) => {
+  characterSection.classList.remove('d-none');
+  characterImg.src = image;
+  characterName.innerHTML = name;
+  characterDescription.innerHTML = description;
+};

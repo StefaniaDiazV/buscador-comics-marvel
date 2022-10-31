@@ -35,3 +35,31 @@ const printComics =  async (comics) => {
       cardGroup.append(comicCard);
     })
   }
+
+  const printComic = (comic) => {
+    const coverPath = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
+  const releaseDate = new Intl.DateTimeFormat("es-AR").format(
+    new Date(comic.dates.find((date) => date.type === "onsaleDate").date)
+  );
+  
+  const writers = comic.creators.items
+    .filter((creator) => creator.role === "writer")
+    .map((creator) => creator.name)
+    .join(", ");
+    updateComicDetails(
+        coverPath,
+        comic.title,
+        releaseDate,
+        writers,
+        comic.description
+      ); 
+  };
+  
+  const updateComicDetails = (img, title, releaseDate, writers, description) => {
+    comicSection.classList.remove('d-none');
+    comicImg.src = img;
+    comicTitle.innerHTML = title;
+    comicReleaseDate.innerHTML = releaseDate;
+    comicWriters.innerHTML = writers;
+    comicDescription.innerHTML = description;
+  };
