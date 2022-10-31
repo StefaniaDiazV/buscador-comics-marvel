@@ -97,6 +97,12 @@ const fetchUrl = async (url) => {
  return data;
 };
 
+// RESULTS
+
+const clearResults = () => {
+    cardGroup.innerHTML = "";
+  };
+
 // PAGINATION UTILITIES
 
 const updateResultsCounter = (count, title) => {
@@ -159,3 +165,6 @@ const updatePaginationFunction = () => {
     window.location.href = window.location.pathname + '?' + params.toString()
   };
 };
+
+body.style.background = "white";
+body.style.backgroundImage = "white";
