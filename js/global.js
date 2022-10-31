@@ -96,3 +96,66 @@ const fetchUrl = async (url) => {
  const data = await response.json();
  return data;
 };
+
+// PAGINATION UTILITIES
+
+const updateResultsCounter = (count, title) => {
+    resultsNumber.innerHTML = count;
+    resultsTitle.innerHTML = title;
+    updatePaginationData(count);
+  };
+  
+  const updatePaginationData = (totalResults) => {
+    const params = new URLSearchParams(window.location.search);
+    const total = Math.ceil(totalResults / 20);
+    totalPages.innerHTML = `${total}`;
+    const currentPage = params.get('page') || 1
+    currentPageDiv.innerHTML = `${totalResults === 0 ? 0 : currentPage}`;
+    updatePagination(total);
+  };
+  
+  const updatePagination = (totalResults) => {
+    const params = new URLSearchParams(window.location.search);
+    if (!params.get('page') || params.get('page') === '1') {
+      firstPage.disabled = true;
+      previousPage.disabled = true;
+    } else {
+      firstPage.disabled = false;
+      previousPage.disabled = false;
+    };
+    if (params.get('page') === String(totalResults) || totalResults === 0) {
+      lastPage.disabled = true;
+      nextPage.disabled = true;
+    } else {
+      lastPage.disabled = false;
+      nextPage.disabled = false;
+    };
+  };
+
+// PAGINATION BTN FUNCTION
+
+const updatePaginationFunction = () => {
+  const params = new URLSearchParams(window.location.search);
+  const page = parseInt(params.get('page')) || 1;
+
+  firstPage.onclick = () => {
+    params.set('page', 1);
+    window.location.href = window.location.pathname + '?' + params.toString();
+  };
+
+  previousPage.onclick = () => {
+    params.set('page', page - 1);
+    window.location.href = window.location.pathname + '?' + params.toString();
+  }
+  
+  nextPage.onclick = () => {
+    params.set('page', page + 1);
+    window.location.href = window.location.pathname + '?' + params.toString();
+  };
+
+  lastPage.onclick = () => {
+    let totalPages = Math.ceil(resultsCount / 20);
+    params.set('page', totalPages);
+    window.location.href = window.location.pathname + '?' + params.toString()
+  };
+};
