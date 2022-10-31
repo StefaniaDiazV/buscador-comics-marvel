@@ -30,3 +30,26 @@ const loadComicCharacthers = async () => {
   updateResultsCounter(resultsCount, 'Personajes');
   printCharacters(results);
 };
+
+const loadCharacter = async () => {
+    const params = new URLSearchParams(window.location.search);
+    const {
+      data: {
+        results: [character],
+      },
+    } = await fetchUrl(createUrlId(params.get('characterId'), params.get('type'))); 
+    const coverPath = `${character.thumbnail.path}.${character.thumbnail.extension}`;
+    characterDetails(character.name, coverPath, character.description);
+};
+
+const loadCharacterComics = async () => {
+  showLoader();
+  const params = new URLSearchParams(window.location.search);
+  const response = await fetchUrl(createUrlId(params.get('characterId'), params.get('type'), 'comics', params.get('page')));
+  const data = response.data;
+  const results = data.results;
+  resultsCount = data.total;
+  hideLoader();
+  updateResultsCounter(resultsCount, 'Comics');
+  printComics(results);
+}; 
