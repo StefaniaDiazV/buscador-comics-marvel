@@ -54,6 +54,16 @@ const loadCharacterComics = async () => {
   printComics(results);
 }; 
 
+btnBack.addEventListener('click', () => {
+    const params = new URLSearchParams(window.location.search);
+      params.delete('type');
+      params.delete('comicId');
+      params.delete("order");
+      params.delete("characterId");
+      params.set('page', 1);
+      window.location.href = window.location.pathname + './../index.html?' + params.toString(); 
+  })
+
 const searchById = () => {
     const params = new URLSearchParams(window.location.search);
     if(params.get('type') === 'comics'){
