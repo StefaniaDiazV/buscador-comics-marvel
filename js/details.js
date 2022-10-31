@@ -53,3 +53,22 @@ const loadCharacterComics = async () => {
   updateResultsCounter(resultsCount, 'Comics');
   printComics(results);
 }; 
+
+const searchById = () => {
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('type') === 'comics'){
+        loadComic();
+        loadComicCharacthers();
+    } else if (params.get('type') === 'characters'){
+        loadCharacter();
+        loadCharacterComics();
+    };
+  };
+
+const init = () => {
+    searchById();
+    updatePaginationFunction();
+    updatePagination();
+};
+
+window.onload = init();
