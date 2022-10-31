@@ -37,3 +37,58 @@ formSearch.addEventListener('submit', e => {
     params.set('page', page);
     window.location.href = window.location.pathname + '?' + params.toString();
   })
+
+  // FETCH COMICS
+
+const fetchComics = async () => {
+    showLoader();
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get('page')) || 1;
+    const response = await fetchUrl(createUrl('comics',page, params.get('order') || "title",params.get('search')));
+    const data = response.data;
+    const comics = data.results;
+    resultsCount = data.total;
+    updateResultsCounter(resultsCount, 'Resultados');
+    hideLoader();
+    printComics(comics);
+  };
+  
+  // FETCH CHARACTERS
+  
+  const fetchCharacters = async () => {
+    showLoader();
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get('page')) || 1;
+    const response = await fetchUrl(createUrl('characters',page, params.get('order') || "title",params.get('search')));
+    const data = response.data;
+    const characters = data.results;
+    resultsCount = data.total;
+    updateResultsCounter(resultsCount, 'Resultados');
+    hideLoader();
+    printCharacters(characters);
+  };
+  
+  const search = () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('type') === "comics"){
+      fetchComics();
+    };
+    if (params.get('type') === "characters") {
+      fetchCharacters();
+    } else{
+      fetchComics();
+    };
+  };
+  
+  btnSearch.addEventListener("click", () => {
+    search();
+  })
+  
+  const init = () => {
+    createSelect();
+    search();
+    updatePaginationFunction();
+    updatePagination();
+  };
+  
+  window.onload = init;
