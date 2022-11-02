@@ -28,6 +28,11 @@ const createSelect = () => {
       selectOrder.querySelector(`option[value="${params.get("order") || 'title'}"]`).setAttribute("selected", "selected");
     };
 
+    const uptadeInputSearch = () => {
+      const params = new URLSearchParams(window.location.search);
+      inputSearch.value = `${params.get("search") || ''}`;
+    };
+
 // CARGAR PARAMS DESDE EL FORM  
 
 formSearch.addEventListener('submit', e => {
@@ -36,6 +41,7 @@ formSearch.addEventListener('submit', e => {
     const startWith = e.target["input-search"].value;
     const type = e.target["select-tipo"].value;
     const params = new URLSearchParams(window.location.search);
+    params.delete('search')
     if(e.target["input-search"].value){
       params.set('search', startWith);
     } else{
@@ -97,6 +103,7 @@ const fetchComics = async () => {
     updateSelectType();
     createSelect();
     updateSelecOrder();
+    uptadeInputSearch();
     search();
     updatePaginationFunction();
     updatePagination();
