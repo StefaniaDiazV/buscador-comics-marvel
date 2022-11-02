@@ -115,7 +115,7 @@ const updateResultsCounter = (count, title) => {
     const params = new URLSearchParams(window.location.search);
     const total = Math.ceil(totalResults / 20);
     totalPages.innerHTML = `${total}`;
-    const currentPage = params.get('page') || 1
+    const currentPage = params.get('page') || 1;
     currentPageDiv.innerHTML = `${totalResults === 0 ? 0 : currentPage}`;
     updatePagination(total);
   };
