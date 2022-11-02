@@ -164,6 +164,52 @@
   margin-left: 20px;
 }
 
+footer {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+footer .social-media ul {
+  display: flex;
+  flex-direction: row;
+}
+footer .social-media ul li {
+  list-style: none;
+  margin: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 2rem;
+  background-color: black;
+}
+footer .social-media ul li:hover {
+  transform: scale(1.2);
+  transition-duration: 0.6s;
+}
+footer .social-media ul li i {
+  color: white;
+}
+
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background-size: cover;
+  background-position: absolute;
+}
+.loader-container .thor {
+  transform: translateZ(1px);
+  width: 300px;
+  height: 300px;
+  margin: 8px;
+  background: transparent;
+  animation: ld-flip-h 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
 .margen-derecho {
   margin-right: 10px;
 }
@@ -188,6 +234,41 @@
     width: 100%;
     margin-left: 0;
   }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.pagination-button {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+.pagination-button:disabled {
+  color: #757575;
+  border-color: #757575;
+}
+
+input:focus {
+  outline-color: #ed1d23;
+}
+
+select:focus {
+  outline-color: #ed1d23;
+}
+
+button:focus {
+  outline-color: #ed1d23;
+}
+button:not(:disabled):hover {
+  background-color: #ed1d23;
 }
 
 #section-comics {
@@ -272,180 +353,6 @@ img {
   margin-bottom: 1rem;
 }
 
-.body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-.body .main {
-  flex: 1 0 auto;
-}
-.body .footer-bg {
-  background-color: black;
-  color: #fff;
-  padding-top: 20px;
-}
-
-body {
-  margin: 0;
-  background-color: #e12835;
-  background-image: radial-gradient(#e12835 20%, #be2633 50%, rgba(0, 0, 0, 0.5) 100%);
-  background-size: 120%;
-  background-position: center;
-  font-family: "Barlow Condensed", sans-serif;
-  animation: tighten-vinette ease-out 1800ms forwards;
-}
-
-.images {
-  pointer-events: none;
-  height: 100vh;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  position: absolute;
-  opacity: 0.6;
-  z-index: 20;
-  background-size: cover;
-  background-position: center;
-  background-repeat: none;
-  background-image: url("https://static.comicvine.com/uploads/original/11124/111240517/4986890-4700382785-29908.jpg");
-}
-
-.wrapper {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  cursor: pointer;
-  text-align: center;
-}
-.logo:hover .restart {
-  opacity: 0.8;
-}
-
-.restart {
-  color: #fff;
-  margin-top: 20px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: -0.08rem;
-  transition: opacity 150ms linear;
-}
-
-.name {
-  position: relative;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -0.2rem;
-  font-size: 5rem;
-  margin: 0.05rem 0.05rem 0.5rem;
-  padding: 0 0.4rem;
-  display: inline-block;
-  z-index: 10;
-  font-weight: 800;
-  transform: translateX(95px);
-}
-.name:before {
-  z-index: -10;
-  content: "";
-  display: block;
-  background-color: #e12835;
-  border: solid rgba(255, 255, 255, 0.2) 1px;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.surname {
-  position: relative;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: -0.2rem;
-  font-size: 5rem;
-  margin: 0.05rem 0.05rem 0.5rem;
-  padding: 0 0.4rem;
-  display: inline-block;
-  font-weight: 500;
-  letter-spacing: -0.3rem;
-  transform: translateX(-95px);
-}
-.surname:after {
-  content: "";
-  display: block;
-  height: 3px;
-  position: absolute;
-  background-color: #fff;
-  display: block;
-  left: 0.4rem;
-  right: 0.4rem;
-  bottom: 0;
-}
-.surname:before {
-  content: "";
-  display: block;
-  height: 3px;
-  position: absolute;
-  background-color: #fff;
-  display: block;
-  left: 0.4rem;
-  right: 0.4rem;
-  top: 0;
-}
-
-.wrapper.run-animation {
-  animation: shrink ease-out 4800ms forwards 600ms;
-}
-.wrapper.run-animation .name {
-  transform: translateX(95px);
-  animation: slide-out-X 750ms ease forwards;
-}
-.wrapper.run-animation .surname {
-  transform: translateX(-95px);
-  color: transparent;
-  animation: slide-out-X 750ms ease forwards, show-text 300ms linear forwards 1500ms;
-}
-.wrapper.run-animation .surname:before {
-  transform: translateY(2.9rem);
-  animation: slide-out-Y 300ms ease forwards 750ms;
-}
-.wrapper.run-animation .surname:after {
-  transform: translateY(-2.9rem);
-  animation: slide-out-Y 300ms ease forwards 750ms;
-}
-.wrapper.run-animation .restart {
-  opacity: 0;
-  animation: fade-down 1200ms ease 3600ms forwards;
-}
-.wrapper.run-animation ~ .images {
-  animation: flicker-images 1500ms 2 steps(1, end), fade-out 4500ms forwards;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 50px;
-}
-
-.pagination-button {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px;
-}
-.pagination-button:disabled {
-  color: #757575;
-  border-color: #757575;
-}
-
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -495,26 +402,6 @@ body {
   flex-grow: 1;
 }
 
-.loader-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  position: absolute;
-  background-size: cover;
-  background-position: absolute;
-}
-.loader-container .thor {
-  transform: translateZ(1px);
-  width: 300px;
-  height: 300px;
-  margin: 8px;
-  background: transparent;
-  animation: ld-flip-h 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-
 * {
   box-sizing: border-box;
   position: relative;
@@ -525,21 +412,6 @@ body {
 }
 .principal .main {
   flex-grow: 1;
-}
-
-input:focus {
-  outline-color: #ed1d23;
-}
-
-select:focus {
-  outline-color: #ed1d23;
-}
-
-button:focus {
-  outline-color: #ed1d23;
-}
-button:not(:disabled):hover {
-  background-color: #ed1d23;
 }
 
 /*# sourceMappingURL=style.css.map */
