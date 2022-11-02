@@ -19,6 +19,15 @@ const createSelect = () => {
      createSelect();
     })
 
+    const updateSelectType = () => {
+      const params = new URLSearchParams(window.location.search);
+      selectType.querySelector(`option[value="${params.get("type") || 'comics'}"]`).setAttribute("selected", "selected");
+    };
+    const updateSelecOrder = () => {
+      const params = new URLSearchParams(window.location.search);
+      selectOrder.querySelector(`option[value="${params.get("order") || 'title'}"]`).setAttribute("selected", "selected");
+    };
+
 // CARGAR PARAMS DESDE EL FORM  
 
 formSearch.addEventListener('submit', e => {
@@ -85,7 +94,9 @@ const fetchComics = async () => {
   })
   
   const init = () => {
+    updateSelectType();
     createSelect();
+    updateSelecOrder();
     search();
     updatePaginationFunction();
     updatePagination();
