@@ -46,3 +46,9 @@ El presente proyecto consiste en una página web, la cual te permitirá realizar
   - Descripción
   - Comics en los que aparece
 
+
+## Corrección
+
+No me gusta tanto la idea de tener las funcione updateSelectType, updateSelecOrderm, uptadeInputSearch xq en definitiva estas creando la variable params ocupando memoria sin necesidad.
+
+## Nota: 10 (Excelente)
